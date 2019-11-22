@@ -1,6 +1,7 @@
 package base;
 
 import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.LogStatus;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,6 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import report.ExtentManager;
+import report.ExtentTestManager;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -127,48 +130,48 @@ public class CommonAPI {
     }
 
     //reporting starts
-//    @BeforeSuite
-//    public void extentSetup(ITestContext context) {
-//        ExtentManager.setOutputDirectory(context);
-//        extent = ExtentManager.getInstance();
-//    }
-//
-//    @BeforeMethod
-//    public void startExtent(Method method) {
-//        String className = method.getDeclaringClass().getSimpleName();
-//        ExtentTestManager.startTest(method.getName());
-//        ExtentTestManager.getTest().assignCategory(className);
-//    }
-//
-//    protected String getStackTrace(Throwable t) {
-//        StringWriter sw = new StringWriter();
-//        PrintWriter pw = new PrintWriter(sw);
-//        t.printStackTrace(pw);
-//        return sw.toString();
-//    }
-//
-//    @AfterMethod
-//    public void afterEachTestMethod(ITestResult result) {
-//        ExtentTestManager.getTest().getTest().setStartedTime(getTime(result.getStartMillis()));
-//        ExtentTestManager.getTest().getTest().setEndedTime(getTime(result.getEndMillis()));
-//        for (String group : result.getMethod().getGroups()) {
-//            ExtentTestManager.getTest().assignCategory(group);
-//        }
-//
-//        if (result.getStatus() == 1) {
-//            ExtentTestManager.getTest().log(LogStatus.PASS, "Test Passed");
-//        } else if (result.getStatus() == 2) {
-//            ExtentTestManager.getTest().log(LogStatus.FAIL, getStackTrace(result.getThrowable()));
-//        } else if (result.getStatus() == 3) {
-//            ExtentTestManager.getTest().log(LogStatus.SKIP, "Test Skipped");
-//        }
-//
-//        ExtentTestManager.endTest();
-//        extent.flush();
-//        if (result.getStatus() == ITestResult.FAILURE) {
-//            captureScreenshot(driver, result.getName());
-//        }
-//    }
+    @BeforeSuite
+    public void extentSetup(ITestContext context) {
+        ExtentManager.setOutputDirectory(context);
+        extent = ExtentManager.getInstance();
+    }
+
+    @BeforeMethod
+    public void startExtent(Method method) {
+        String className = method.getDeclaringClass().getSimpleName();
+        ExtentTestManager.startTest(method.getName());
+        ExtentTestManager.getTest().assignCategory(className);
+    }
+
+    protected String getStackTrace(Throwable t) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        t.printStackTrace(pw);
+        return sw.toString();
+    }
+
+    @AfterMethod
+    public void afterEachTestMethod(ITestResult result) {
+        ExtentTestManager.getTest().getTest().setStartedTime(getTime(result.getStartMillis()));
+        ExtentTestManager.getTest().getTest().setEndedTime(getTime(result.getEndMillis()));
+        for (String group : result.getMethod().getGroups()) {
+            ExtentTestManager.getTest().assignCategory(group);
+        }
+
+        if (result.getStatus() == 1) {
+            ExtentTestManager.getTest().log(LogStatus.PASS, "Test Passed");
+        } else if (result.getStatus() == 2) {
+            ExtentTestManager.getTest().log(LogStatus.FAIL, getStackTrace(result.getThrowable()));
+        } else if (result.getStatus() == 3) {
+            ExtentTestManager.getTest().log(LogStatus.SKIP, "Test Skipped");
+        }
+
+        ExtentTestManager.endTest();
+        extent.flush();
+        if (result.getStatus() == ITestResult.FAILURE) {
+            captureScreenshot(driver, result.getName());
+        }
+    }
 
     private Date getTimeByMilliseconds(long millis) {
         Calendar calendar = Calendar.getInstance();

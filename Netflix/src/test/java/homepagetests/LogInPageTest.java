@@ -7,33 +7,42 @@ import org.testng.annotations.Test;
 public class LogInPageTest extends LogInPage {
 
     @Test
-    public void checkLogin(){
-        searchFieldClickableSignIn();
-    }
+    public void checkLOgIn(){
 
-    @Test
-    public void checkTry30daysFree()
-    {
-        searchFieldClickableTry30daysFree();
-    }
-
-    @Test
-    public void checkSignInButton(){
-        searchFieldIsTypeAble();
-    }
-
-    @Test
-    public void checkPassword(){
-        searchFieldIsTypeAble();
+        clickOnSignInButton();
+        typeOnSignInButton();
         typePassward();
     }
 
-    @Test
-    public void clickSignIn(){
-        //searchFieldIsTypeAble();
-        //typePassward();
-        clickSignIn();
-    }
+
+//    @Test
+//    public void checkLogin(){
+//        searchFieldClickableSignIn();
+//    }
+//
+//    @Test
+//    public void checkTry30daysFree()
+//    {
+//        searchFieldClickableTry30daysFree();
+//    }
+//
+//    @Test
+//    public void checkSignInButton(){
+//        searchFieldIsTypeAble();
+//    }
+//
+//    @Test
+//    public void checkPassword(){
+//        searchFieldIsTypeAble();
+//        typePassward();
+//    }
+//
+//    @Test
+//    public void clickSignIn(){
+//        //searchFieldIsTypeAble();
+//        //typePassward();
+//        clickSignIn();
+//    }
 
 
 }

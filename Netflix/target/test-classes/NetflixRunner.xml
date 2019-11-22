@@ -7,7 +7,7 @@
     <parameter name="envName" value="saucelabs"/>
     <parameter name="browser" value="chrome"/>
     <parameter name="browserVersion" value="77.0"/>
-    <parameter name="url" value="https://www.amazon.com"/>
+    <parameter name="url" value="https://www.netflix.com"/>
     <parameter name="platform" value="mac"/>
 
     <test name="Automation tests">
